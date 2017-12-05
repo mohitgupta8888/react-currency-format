@@ -1,8 +1,8 @@
 //@flow
 
 // basic noop function
-export function noop(){}
-export function returnTrue(){ return true; }
+export function noop() { }
+export function returnTrue() { return true; }
 
 export function charIsNumber(char?: string) {
   return !!(char || '').match(/\d/);
@@ -17,10 +17,10 @@ export function fixLeadingZero(numStr?: string) {
   const isNegative = numStr[0] === '-';
   if (isNegative) numStr = numStr.substring(1, numStr.length);
   const parts = numStr.split('.');
-  const beforeDecimal = parts[0].replace(/^0+/,'') || '0';
+  const beforeDecimal = parts[0].replace(/^0+/, '') || '0';
   const afterDecimal = parts[1] || '';
 
-  return `${isNegative ? '-': ''}${beforeDecimal}${afterDecimal ? `.${afterDecimal}` : ''}`;
+  return `${isNegative ? '-' : ''}${beforeDecimal}${afterDecimal ? `.${afterDecimal}` : ''}`;
 }
 
 export function splitString(str: string, index: number) {
@@ -34,7 +34,7 @@ export function splitString(str: string, index: number) {
 export function limitToScale(numStr: string, scale: number, fixedDecimalScale: boolean) {
   let str = ''
   const filler = fixedDecimalScale ? '0' : '';
-  for (let i=0; i<=scale - 1; i++) {
+  for (let i = 0; i <= scale - 1; i++) {
     str += numStr[i] || filler;
   }
   return str;
@@ -95,6 +95,8 @@ export function setCaretPosition(el: HTMLInputElement, caretPos: number) {
 }
 
 export const thousandGroupSpacing = {
+  two: '2',
   twoScaled: '2s',
-  three: '3'
+  three: '3',
+  four: '4'
 };

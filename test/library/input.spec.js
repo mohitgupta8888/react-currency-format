@@ -2,24 +2,24 @@ import React from 'react';
 
 import TextField from 'material-ui/TextField';
 
-import NumberFormat from '../../src/number_format';
+import CurrencyFormat from '../../src/currency-format';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {simulateKeyInput, shallow, mount} from '../test_util';
 
 /*** format_number input as input ****/
-describe('NumberFormat as input', () => {
+describe('CurrencyFormat as input', () => {
   it('should render input as type text by default', () => {
-    const wrapper = mount(<NumberFormat />);
+    const wrapper = mount(<CurrencyFormat />);
     expect(wrapper.find('input').instance().getAttribute('type')).toEqual('text');
   });
 
   it('should render input as type tel', () => {
-    const wrapper = mount(<NumberFormat type="tel" />);
+    const wrapper = mount(<CurrencyFormat type="tel" />);
     expect(wrapper.find('input').instance().getAttribute('type')).toEqual('tel');
   });
 
   it('should have initial value', () => {
-    const wrapper = mount(<NumberFormat value={2456981} thousandSeparator={true} prefix={'$'} />);
+    const wrapper = mount(<CurrencyFormat value={2456981} thousandSeparator={true} prefix={'$'} />);
     expect(wrapper.state().value).toEqual('$2,456,981');
     expect(wrapper.find('input').instance().value).toEqual('$2,456,981');
   });
@@ -35,7 +35,7 @@ describe('NumberFormat as input', () => {
         };
       }
       render() {
-        return (<NumberFormat thousandSeparator={true} prefix={'$'}/>)
+        return (<CurrencyFormat thousandSeparator={true} prefix={'$'}/>)
       }
     }
 
@@ -54,7 +54,7 @@ describe('NumberFormat as input', () => {
 
 
   it('removes negation when format props is provided', () => {
-    const wrapper = shallow(<NumberFormat format="#### #### #### ####" value="2342 2345 2342 2345" />);
+    const wrapper = shallow(<CurrencyFormat format="#### #### #### ####" value="2342 2345 2342 2345" />);
     const input = wrapper.find('input');
 
     //by default space is mask
@@ -67,7 +67,7 @@ describe('NumberFormat as input', () => {
 
 
   it('should block inputs based on isAllowed callback', () => {
-    const wrapper = shallow(<NumberFormat isAllowed={(values) => {
+    const wrapper = shallow(<CurrencyFormat isAllowed={(values) => {
       const {floatValue} = values;
       return floatValue <= 10000;
     }} value={9999}/>);
@@ -86,7 +86,7 @@ describe('NumberFormat as input', () => {
     const WrapperComponent = (props) => {
       return (
         <MuiThemeProvider>
-          <NumberFormat {...props} />
+          <CurrencyFormat {...props} />
         </MuiThemeProvider>
       )
     }
@@ -105,7 +105,7 @@ describe('NumberFormat as input', () => {
 
   describe('Test masking', () => {
     it('should allow mask as string', () => {
-      const wrapper = shallow(<NumberFormat format="#### #### ####" mask="_"/>);
+      const wrapper = shallow(<CurrencyFormat format="#### #### ####" mask="_"/>);
 
       simulateKeyInput(wrapper.find('input'), '111', 0);
       expect(wrapper.state().value).toEqual('111_ ____ ____');
@@ -115,7 +115,7 @@ describe('NumberFormat as input', () => {
     });
 
     it('should allow mask as array of strings', () => {
-      const wrapper = shallow(<NumberFormat format="##/##/####" mask={['D', 'D', 'M', 'M', 'Y', 'Y', 'Y', 'Y']}/>);
+      const wrapper = shallow(<CurrencyFormat format="##/##/####" mask={['D', 'D', 'M', 'M', 'Y', 'Y', 'Y', 'Y']}/>);
 
       simulateKeyInput(wrapper.find('input'), '1', 0);
       expect(wrapper.state().value).toEqual('1D/MM/YYYY');
@@ -126,11 +126,11 @@ describe('NumberFormat as input', () => {
 
     it('should throw an error if mask has numeric character', () => {
       expect(() => {
-        shallow(<NumberFormat format="#### #### ####" mask="1"/>)
+        shallow(<CurrencyFormat format="#### #### ####" mask="1"/>)
       }).toThrow()
 
       expect(() => {
-        shallow(<NumberFormat format="#### #### ####" mask={['D', 'D', 'M', '1', '2', 'Y', 'Y', 'Y']}/>)
+        shallow(<CurrencyFormat format="#### #### ####" mask={['D', 'D', 'M', '1', '2', 'Y', 'Y', 'Y']}/>)
       }).toThrow()
     })
   })

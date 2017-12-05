@@ -1,17 +1,17 @@
 {
-  "name": "react-number-format",
-  "description": "React component to format number in an input or as a text.",
-  "version": "3.0.3",
-  "main": "lib/number_format.js",
-  "author": "Sudhanshu Yadav",
+  "name": "react-currency-format",
+  "description": "React component to format currency in an input or as a text.",
+  "version": "1.0.0",
+  "main": "lib/currency-format.js",
+  "author": "Mohit Gupta",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/s-yadav/react-number-format"
+    "url": "https://github.com/mohitgupta8888/react-currency-format"
   },
   "bugs": {
-    "mail": "sudhanshuyadav2@gmail.com",
-    "url": "https://github.com/s-yadav/react-number-format/issues"
+    "mail": "mohitgupta8888@gmail.com",
+    "url": "https://github.com/mohitgupta8888/react-currency-format/issues"
   },
   "keywords": [
     "react-component",

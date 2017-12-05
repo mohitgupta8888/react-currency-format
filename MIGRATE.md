@@ -5,14 +5,14 @@ onChange prop no longer receives values object. You should use onValueChange pro
 
 ```jsx
 //v2
-<NumberFormat prefix="$" value={this.state.price} onChange={(e, values) => {
+<CurrencyFormat prefix="$" value={this.state.price} onChange={(e, values) => {
   this.setState({price: values.formattedValue})
 }}/>
 ```
 
 ```jsx
 //v3
-<NumberFormat prefix="$" value={this.state.price} onValueChange={(values) => {
+<CurrencyFormat prefix="$" value={this.state.price} onValueChange={(values) => {
   this.setState({price: values.formattedValue})
 }}/>
 ```
@@ -23,7 +23,7 @@ value prop is more restrictive now, in v2 you were allowed to pass formatted val
 
 ```jsx
 //v2
-<NumberFormat prefix="$" thousandSeparator="." decimalSeparator="," value={this.state.price}/>
+<CurrencyFormat prefix="$" thousandSeparator="." decimalSeparator="," value={this.state.price}/>
 /*
   this.state.price can be
   - $12.345,56 // formatted value
@@ -36,7 +36,7 @@ In v3 you can pass it as formattedValue (string), float value, or numeric string
 
 ```jsx
 //v3
-<NumberFormat prefix="$" thousandSeparator="." decimalSeparator=","  value={this.state.price}/>
+<CurrencyFormat prefix="$" thousandSeparator="." decimalSeparator=","  value={this.state.price}/>
 /*
   this.state.price can be
   - $12.345,56 // formatted value
@@ -79,7 +79,7 @@ in v2 decimalPrecision convert number into fixed scale provided as decimalPrecis
 
 ```jsx
 //v2
-<NumberFormat prefix="$" decimalPrecision={3} value={34.4}/>
+<CurrencyFormat prefix="$" decimalPrecision={3} value={34.4}/>
 // will be displayed as 34.400
 // value 34.4584 will be displayed as 34.458
 ```
@@ -88,11 +88,11 @@ in v3 decimalScale limits to the scale provided. To fix the decimals to provided
 
 ```jsx
 //v3
-<NumberFormat prefix="$" decimalScale={3} value={34.4}/>
+<CurrencyFormat prefix="$" decimalScale={3} value={34.4}/>
 // will be displayed as 34.4
 // value 34.4584 will be displayed as 34.458
 
-<NumberFormat prefix="$" decimalScale={3} value={34.4} fixedDecimalScale={true}/>
+<CurrencyFormat prefix="$" decimalScale={3} value={34.4} fixedDecimalScale={true}/>
 // will be displayed as 34.400
 // value 34.4584 will be displayed as 34.458
 ```

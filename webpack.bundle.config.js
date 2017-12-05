@@ -8,11 +8,11 @@ const banner = PACKAGE.name + ' - ' + PACKAGE.version + '\n' +
 
 module.exports = {
   entry: {
-    'dist/react-number-format' : [
-      './src/number_format.js'
+    'dist/react-currency-format' : [
+      './src/currency-format.js'
     ],
-    'dist/react-number-format.min' : [
-      './src/number_format.js'
+    'dist/react-currency-format.min' : [
+      './src/currency-format.js'
     ]
   },
   debug: false,
@@ -21,7 +21,7 @@ module.exports = {
     // path: path.join(__dirname, "public","js"),
     filename: '[name].js',
     libraryTarget : 'umd',
-    library : 'NumberFormat'
+    library : 'CurrencyFormat'
   },
   resolveLoader: {
     modulesDirectories: ['','node_modules']

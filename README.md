@@ -1,4 +1,4 @@
-# react-number-format
+# react-currency-format
 React component to format number in an input or as a text
 
 ### Features
@@ -9,27 +9,27 @@ React component to format number in an input or as a text
 5. Formatting a input or a simple text.
 
 ### Install
-[![npm](https://img.shields.io/npm/dm/react-number-format.svg)](https://www.npmjs.com/package/react-number-format)
+[![npm](https://img.shields.io/npm/dm/react-currency-format.svg)](https://www.npmjs.com/package/react-currency-format)
 
 Through npm
-`npm install react-number-format --save`
+`npm install react-currency-format --save`
 
 Or get compiled development and production version from ./dist
 
 ### Usage
 ES6
 ```js
-import NumberFormat from 'react-number-format';
+import CurrencyFormat from 'react-currency-format';
 ```
 
 ES5
 ```js
-const NumberFormat = require('react-number-format');
+const CurrencyFormat = require('react-currency-format');
 ```
 
 Typescript
 ```js
-import * as NumberFormat from 'react-number-format';
+import * as CurrencyFormat from 'react-currency-format';
 ```
 
 
@@ -37,7 +37,7 @@ import * as NumberFormat from 'react-number-format';
 | Props        | Options           | Default  | Description |
 | ------------- |-------------| -----| -------- |
 | thousandSeparator | mixed: single character string or boolean true (true is default to ,) |none| Add thousand separators on number |
-| thousandSpacing | String, One of ['2s', '3'] | '3' | Add thousand group spacing on number. Default: '3' will format like 1,234,567,981 while '2s' will format like 1,23,45,67,981 |
+| thousandSpacing | String, One of ['2', '2s', '3', '4'] | '3' | Add thousand group spacing on number. Default: '2' will format like 1,23,45,67,89 __ '3' will format like 1,234,567,981 __ '2s' will format like 1,23,45,67,981 __ '4' will format like 1,2345,6789 |
 | decimalSeparator | single character string| . | Support decimal point on a number |
 | decimalScale | number| none| If defined it limits to given decimal scale |
 | fixedDecimalScale | boolean| false| If true it add 0s to match given decimalScale|
@@ -85,35 +85,35 @@ Its recommended to use formattedValue / value / floatValue based on the initial 
 ### Examples
 #### Prefix and thousand separator : Format currency as text
 ```jsx
-var NumberFormat = require('react-number-format');
+var CurrencyFormat = require('react-currency-format');
 
-<NumberFormat value={2456981} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+<CurrencyFormat value={2456981} displayType={'text'} thousandSeparator={true} prefix={'$'} />
 ```
 Output : $2,456,981
 
 #### Custom renderText method
 ```jsx
-var NumberFormat = require('react-number-format');
+var CurrencyFormat = require('react-currency-format');
 
-<NumberFormat value={2456981} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <div>{value}</div>} />
+<CurrencyFormat value={2456981} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <div>{value}</div>} />
 ```
 Output : `<div> $2,456,981 </div>`
 
 #### Format with pattern : Format credit card as text
 ```jsx
-<NumberFormat value={4111111111111111} displayType={'text'} format="#### #### #### ####" />
+<CurrencyFormat value={4111111111111111} displayType={'text'} format="#### #### #### ####" />
 ```
 Output : 4111 1111 1111 1111
 
 #### Prefix and thousand separator : Format currency in input
 ```jsx
-<NumberFormat thousandSeparator={true} prefix={'$'} />
+<CurrencyFormat thousandSeparator={true} prefix={'$'} />
 ```
 ![Screencast example](https://i.imgur.com/d0P2Db1.gif)
 
 #### Maintaining change value on state
 ```jsx
-<NumberFormat value={this.state.profit} thousandSeparator={true} prefix={'$'} onValueChange={(values) => {
+<CurrencyFormat value={this.state.profit} thousandSeparator={true} prefix={'$'} onValueChange={(values) => {
     const {formattedValue, value} = values;
     // formattedValue = $2,223
     // value ie, 2223
@@ -123,13 +123,13 @@ Output : 4111 1111 1111 1111
 
 #### Format with pattern : Format credit card in an input
 ```jsx
-<NumberFormat format="#### #### #### ####" />
+<CurrencyFormat format="#### #### #### ####" />
 ```
 ![Screencast example](https://i.imgur.com/KEiYp4o.gif)
 
 #### Format with mask : Format credit card in an input
 ```jsx
-<NumberFormat format="#### #### #### ####" mask="_"/>
+<CurrencyFormat format="#### #### #### ####" mask="_"/>
 ```
 ![Screencast example](https://i.imgur.com/qvmydpH.gif)
 
@@ -137,7 +137,7 @@ Output : 4111 1111 1111 1111
 #### Format with mask as array
 Mask can also be a array of string. Each item corresponds to the same index #.
 ```jsx
-<NumberFormat format="##/##" placeholder="MM/YY" mask={['M', 'M', 'Y', 'Y']}/>
+<CurrencyFormat format="##/##" placeholder="MM/YY" mask={['M', 'M', 'Y', 'Y']}/>
 ```
 ![Screencast example](https://media.giphy.com/media/xT9IgojmLf6x3jX0nS/giphy.gif)
 
@@ -168,13 +168,13 @@ function cardExpiry(val) {
   return month + (year.length ? '/' + year : '');
 }
 
-<NumberFormat format={cardExpiry}/>
+<CurrencyFormat format={cardExpiry}/>
 ```
 ![Screencast example](https://i.imgur.com/9wwdyFF.gif)
 
 ### Format phone number
 ```jsx
-<NumberFormat format="+1 (###) ###-####" mask="_"/>
+<CurrencyFormat format="+1 (###) ###-####" mask="_"/>
 ```
 ![Screencast example](https://media.giphy.com/media/l1J9wJ6ZSONO7cXkI/giphy.gif)
 
@@ -185,21 +185,21 @@ You can easily extend your custom input with number format. But custom input sho
 ```
 
 ```jsx
-  <NumberFormat customInput={TextField} format="#### #### #### ####"/>
+  <CurrencyFormat customInput={TextField} format="#### #### #### ####"/>
 ```
 ![Screencast example](https://media.giphy.com/media/3og0IH0LJhIQWFxztC/giphy.gif)
 
 **Passing custom input props**
 All custom input props and number input props are passed together.
 ```jsx
-  <NumberFormat hintText="Some placeholder" value={this.state.card} customInput={TextField} format="#### #### #### ####"/>
+  <CurrencyFormat hintText="Some placeholder" value={this.state.card} customInput={TextField} format="#### #### #### ####"/>
 ```
 
 ### Live Demo
-[http://codepen.io/s-yadav/pen/bpKNMa](http://codepen.io/s-yadav/pen/bpKNMa)
+[http://codepen.io/mohitgupta8888/pen/bpKNMa](http://codepen.io/mohitgupta8888/pen/bpKNMa)
 
 ### Show your support
-[:star: this repo](https://github.com/s-yadav/react-number-format)
+[:star: this repo](https://github.com/mohitgupta8888/react-currency-format)
 
 ### Migrate v2 to v3
 [Migrate](/MIGRATE.md)
@@ -217,7 +217,7 @@ For regular updates follow me on [_syadav](https://twitter.com/_syadav)
 - Value can be passed as string or number, but if it is passed as string it should be either formatted value or if it is a numeric string, you have to set isNumericString props to true.
 - Added support for numbers in prefix / suffix / pattern.
 - Fixed caret position and formatting issues.
-- Lot of bugs and stability fixes ([See release notes](https://github.com/s-yadav/react-number-format/releases/tag/v3.0.0))
+- Lot of bugs and stability fixes ([See release notes](https://github.com/mohitgupta8888/react-currency-format/releases/tag/v3.0.0))
 
 #### v2.0.0
 - Added isAllowed prop to validate custom input and reject input based on it.
@@ -228,7 +228,7 @@ For regular updates follow me on [_syadav](https://twitter.com/_syadav)
 - Value can be passed as string or number but if it is passed as string you should maintain the same decimal separator on the string what you provided as decimalSeparator prop.
 - Added back the type prop for the input type attribute (Only text or tel is supported)
 - Enforce cursor to be between prefix and suffix in focus, click or arrow navigation.
-- Lot of bugs and stability fixes ([See release notes](https://github.com/s-yadav/react-number-format/releases))
+- Lot of bugs and stability fixes ([See release notes](https://github.com/mohitgupta8888/react-currency-format/releases))
 
 
 ### Development

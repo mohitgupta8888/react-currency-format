@@ -1,5 +1,5 @@
 /*!
- * react-number-format - 3.0.3
+ * react-currency-format - 3.0.3
  * Author : Sudhanshu Yadav
  * Copyright (c) 2016,2017 to Sudhanshu Yadav - ignitersworld.com , released under the MIT license.
  */
@@ -9,9 +9,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["react"], factory);
 	else if(typeof exports === 'object')
-		exports["NumberFormat"] = factory(require("react"));
+		exports["CurrencyFormat"] = factory(require("react"));
 	else
-		root["NumberFormat"] = factory(root["React"]);
+		root["CurrencyFormat"] = factory(root["React"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -134,14 +134,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  isAllowed: _utils.returnTrue
 	};
 
-	var NumberFormat = function (_React$Component) {
-	  _inherits(NumberFormat, _React$Component);
+	var CurrencyFormat = function (_React$Component) {
+	  _inherits(CurrencyFormat, _React$Component);
 
-	  function NumberFormat(props) {
-	    _classCallCheck(this, NumberFormat);
+	  function CurrencyFormat(props) {
+	    _classCallCheck(this, CurrencyFormat);
 
 	    //validate props
-	    var _this = _possibleConstructorReturn(this, (NumberFormat.__proto__ || Object.getPrototypeOf(NumberFormat)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (CurrencyFormat.__proto__ || Object.getPrototypeOf(CurrencyFormat)).call(this, props));
 
 	    _this.validateProps();
 
@@ -160,7 +160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return _this;
 	  }
 
-	  _createClass(NumberFormat, [{
+	  _createClass(CurrencyFormat, [{
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate(prevProps) {
 	      this.updateValueIfRequired(prevProps);
@@ -981,13 +981,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }]);
 
-	  return NumberFormat;
+	  return CurrencyFormat;
 	}(_react2.default.Component);
 
-	NumberFormat.propTypes = propTypes;
-	NumberFormat.defaultProps = defaultProps;
+	CurrencyFormat.propTypes = propTypes;
+	CurrencyFormat.defaultProps = defaultProps;
 
-	module.exports = NumberFormat;
+	module.exports = CurrencyFormat;
 
 /***/ }),
 /* 2 */

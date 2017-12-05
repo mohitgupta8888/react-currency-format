@@ -1,11 +1,11 @@
 import React from 'react';
-import NumberFormat from '../../src/number_format';
+import CurrencyFormat from '../../src/currency-format';
 
 import {simulateKeyInput, simulateMousUpEvent, simulateFocusEvent, shallow} from '../test_util';
 
 describe('Test character insertion', () => {
   it('should add any number properly when input is empty without format prop passed', () => {
-    const wrapper = shallow(<NumberFormat thousandSeparator={true} prefix={'$'}/>);
+    const wrapper = shallow(<CurrencyFormat thousandSeparator={true} prefix={'$'}/>);
 
     simulateKeyInput(wrapper.find('input'), '1', 0);
 
@@ -21,7 +21,7 @@ describe('Test character insertion', () => {
 
   it('should add any number properly when input is empty with format prop passed', () => {
     //case 1: Enter first number
-    const wrapper = shallow(<NumberFormat format="#### #### #### ####" mask="_"/>);
+    const wrapper = shallow(<CurrencyFormat format="#### #### #### ####" mask="_"/>);
     simulateKeyInput(wrapper.find('input'), '1', 0);
     expect(wrapper.state().value).toEqual('1___ ____ ____ ____');
 
@@ -68,7 +68,7 @@ describe('Test character insertion', () => {
   });
 
   it('should handle addition of characters at a cursor position', () => {
-    const wrapper = shallow(<NumberFormat thousandSeparator={true} prefix={'$'} value="$12,345"/>);
+    const wrapper = shallow(<CurrencyFormat thousandSeparator={true} prefix={'$'} value="$12,345"/>);
     let caretPos;
     const setSelectionRange = (pos) => {
       caretPos = pos;
@@ -97,7 +97,7 @@ describe('Test character insertion', () => {
 })
 
 describe('Test delete/backspace with format pattern', () => {
-  const wrapper = shallow(<NumberFormat format="+1 (###) ### # ## US" value="+1 (123) 456 7 89 US"/>);
+  const wrapper = shallow(<CurrencyFormat format="+1 (###) ### # ## US" value="+1 (123) 456 7 89 US"/>);
   let caretPos;
   const setSelectionRange = (pos) => {
     caretPos = pos;
@@ -135,7 +135,7 @@ describe('Test delete/backspace with format pattern', () => {
 })
 
 describe('Test delete/backspace with numeric format', () => {
-  const wrapper = shallow(<NumberFormat thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
+  const wrapper = shallow(<CurrencyFormat thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
   let caretPos;
   const setSelectionRange = (pos) => {
     caretPos = pos;
@@ -203,7 +203,7 @@ describe('Test arrow keys', () => {
   }
 
   it('should keep caret position between the prefix and suffix', () => {
-    const wrapper = shallow(<NumberFormat thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
+    const wrapper = shallow(<CurrencyFormat thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
     simulateKeyInput(wrapper.find('input'), 'ArrowLeft', 4, 4, setSelectionRange);
     expect(caretPos).toEqual(4);
 
@@ -212,7 +212,7 @@ describe('Test arrow keys', () => {
   })
 
   it('should keep caret position within typable area', () => {
-    const wrapper = shallow(<NumberFormat  format="+1 (###) ### # ## US" value="+1 (123) 456 7 89 US"/>);
+    const wrapper = shallow(<CurrencyFormat  format="+1 (###) ### # ## US" value="+1 (123) 456 7 89 US"/>);
     simulateKeyInput(wrapper.find('input'), 'ArrowLeft', 4, 4, setSelectionRange);
     expect(caretPos).toEqual(4);
 
@@ -242,7 +242,7 @@ describe('Test click / focus on input', () => {
   }
 
   it('should always keep caret on typable area when we click on the input', () => {
-    const wrapper = shallow(<NumberFormat  format="+1 (###) ### # ## US" value="+1 (123) 456 7 89 US"/>);
+    const wrapper = shallow(<CurrencyFormat  format="+1 (###) ### # ## US" value="+1 (123) 456 7 89 US"/>);
 
     simulateMousUpEvent(wrapper.find('input'), 0, setSelectionRange);
     expect(caretPos).toEqual(4);
@@ -255,7 +255,7 @@ describe('Test click / focus on input', () => {
   })
 
   it('should limit the caret position to the next position of the typed number', () => {
-    const wrapper = shallow(<NumberFormat format="##/##/####"/>);
+    const wrapper = shallow(<CurrencyFormat format="##/##/####"/>);
 
     simulateKeyInput(wrapper.find('input'), '1', 0);
     expect(wrapper.state().value).toEqual('1 /  /    ');
@@ -274,7 +274,7 @@ describe('Test click / focus on input', () => {
   })
 
   it('should always keep caret position between suffix and prefix', () => {
-    const wrapper = shallow(<NumberFormat  thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
+    const wrapper = shallow(<CurrencyFormat  thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
 
     simulateMousUpEvent(wrapper.find('input'), 0, setSelectionRange);
     expect(caretPos).toEqual(4);
@@ -285,7 +285,7 @@ describe('Test click / focus on input', () => {
 
   it('should correct wrong caret position on focus', () => {
     jasmine.clock().install()
-    const wrapper = shallow(<NumberFormat  thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
+    const wrapper = shallow(<CurrencyFormat  thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
 
     simulateFocusEvent(wrapper.find('input'), 0, setSelectionRange);
     jasmine.clock().tick(1)
@@ -295,7 +295,7 @@ describe('Test click / focus on input', () => {
 
   it('should not reset correct caret position on focus', () => {
     jasmine.clock().install()
-    const wrapper = shallow(<NumberFormat  thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
+    const wrapper = shallow(<CurrencyFormat  thousandSeparator="," prefix="Rs. " suffix=" /sq.feet" value="Rs. 12,345.50 /sq.feet"/>);
 
     // Note: init caretPos to `6`. Focus to `6`. In case of bug, selectionStart is `0` and the caret will move to `4`.
     //   otherwise (correct behaviour) the value will not change, and stay `6`

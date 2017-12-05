@@ -19,7 +19,7 @@ import {
 
 const propTypes = {
   thousandSeparator: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([true])]),
-  thousandSpacing: PropTypes.oneOf(['2s', '3']),
+  thousandSpacing: PropTypes.oneOf(['2', '2s', '3', '4']),
   decimalSeparator: PropTypes.string,
   decimalScale: PropTypes.number,
   fixedDecimalScale: PropTypes.bool,
@@ -69,7 +69,7 @@ const defaultProps = {
   isAllowed: returnTrue
 };
 
-class NumberFormat extends React.Component {
+class CurrencyFormat extends React.Component {
   state: {
     value?: string,
     numAsString?: string
@@ -422,10 +422,15 @@ class NumberFormat extends React.Component {
   formatThousand(beforeDecimal, thousandSeparator, thousandSpacing) {
     let digitalGroup;
     switch (thousandSpacing) {
+      case thousandGroupSpacing.two:
+        digitalGroup = /(\d)(?=(\d{2})+(?!\d))/g;
+        break;
       case thousandGroupSpacing.twoScaled:
         digitalGroup = /(\d)(?=(((\d{2})+)(\d{1})(?!\d)))/g;
         break;
-      case thousandGroupSpacing.three:
+      case thousandGroupSpacing.four:
+        digitalGroup = /(\d)(?=(\d{4})+(?!\d))/g;
+        break;
       default:
         digitalGroup = /(\d)(?=(\d{3})+(?!\d))/g;
     }
@@ -808,7 +813,7 @@ class NumberFormat extends React.Component {
   }
 }
 
-NumberFormat.propTypes = propTypes;
-NumberFormat.defaultProps = defaultProps;
+CurrencyFormat.propTypes = propTypes;
+CurrencyFormat.defaultProps = defaultProps;
 
-module.exports = NumberFormat;
+module.exports = CurrencyFormat;
