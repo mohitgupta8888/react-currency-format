@@ -789,7 +789,8 @@ class CurrencyFormat extends React.Component {
       onKeyDown: this.onKeyDown,
       onMouseUp: this.onMouseUp,
       onFocus: this.onFocus,
-      onBlur: this.onBlur
+      onBlur: this.onBlur,
+      inputMode: "numeric"
     })
 
     if (displayType === 'text') {
