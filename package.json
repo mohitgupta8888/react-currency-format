@@ -68,7 +68,7 @@
     "react-test-renderer": "^16.0.0",
     "react-transform-hmr": "^1.0.4",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^3.1.11"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || ^15.0.0 || ^16.0.0-rc || ^16.0.0",
