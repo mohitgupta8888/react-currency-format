@@ -55,7 +55,7 @@
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
     "json-loader": "^0.5.4",
-    "karma": "^0.13.22",
+    "karma": "^6.4.1",
     "karma-chrome-launcher": "^0.2.3",
     "karma-cli": "^0.1.2",
     "karma-jasmine": "^0.3.7",
@@ -67,8 +67,8 @@
     "react-dom": "^16.0.0",
     "react-test-renderer": "^16.0.0",
     "react-transform-hmr": "^1.0.4",
-    "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^5.75.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || ^15.0.0 || ^16.0.0-rc || ^16.0.0 || ^17.0.0",
